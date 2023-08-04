@@ -38,6 +38,9 @@ const userSchema = new mongoose.Schema({
 }, { timestamps: true });  // timestams created time added for new user
 
 
+
+
 const userModel = mongoose.model("users", userSchema);
+// "users"  : from MongoDB database, userSchema : created informaton for user from me .
 
 export default userModel;

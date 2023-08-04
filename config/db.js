@@ -1,10 +1,10 @@
-import moongoose from "moongoose";
+import mongoose from "mongoose";
 import colors from "colors";
 
 const connectDB = async () => {
     try {
-        const conn = await moongoose.connect(process.env.MONGO_URL)
-        console.log(`Connected to Mongodb Database`.bgMagenta.white)
+        const conn = await mongoose.connect(process.env.MONGO_URL)
+        console.log(`Connected to Mongodb Database ${conn.connection.host}`.bgMagenta.white) // connection.host method to check host
     } catch (error) {
         console.log(`Error in Mongodb ${error}`.bgRed.white)
     }

@@ -1,8 +1,8 @@
-import moongoose from "moongoose";
+import mongoose from "mongoose";
 
 
 
-const userSchema = new moongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true, // must have name
@@ -22,12 +22,12 @@ const userSchema = new moongoose.Schema({
 
     phone: {
         type: String,
-        required: true,
+        required: true
     },
 
     address: {
         type: String,
-        required: true,
+        required: true
     },
 
     role: {   // it can possible  with Boolean or Number/ i used number
@@ -38,4 +38,6 @@ const userSchema = new moongoose.Schema({
 }, { timestamps: true });  // timestams created time added for new user
 
 
-export default moongoose.model('users', userSchema)
+const userModel = mongoose.model("users", userSchema);
+
+export default userModel;

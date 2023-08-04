@@ -36,3 +36,26 @@
 }
 
 
+.navbar-brand{
+    font-weight: 700;
+    font-family: 'roboto', sans-serif;
+    letter-spacing: 3px;
+}
+
+/* **************************navbar ************************************** */
+.footer{
+    color: #fff;
+    padding: 25px;
+    background-color: black;
+}
+
+.footer a{
+    text-decoration: none;
+    color: #fff;
+    padding: 10px;
+}
+
+.footer a:hover{
+    color: brown;
+    border-bottom: 1px solid brown;
+}

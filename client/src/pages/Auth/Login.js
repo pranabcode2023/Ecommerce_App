@@ -9,7 +9,7 @@ import { useAuth } from "../../context/auth";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [auth, setAuth] = useAuth();
   const navigate = useNavigate();
 
   // form function
@@ -28,6 +28,9 @@ const Login = () => {
 
       if (res && res.data.success) {
         toast.success(res && res.data.message);
+        setAuth({
+          ...auth,
+        });
         navigate("/");
       } else {
         toast.error(res.data.message);

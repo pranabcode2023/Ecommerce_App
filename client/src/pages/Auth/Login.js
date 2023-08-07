@@ -33,7 +33,8 @@ const Login = () => {
           user: res.data.user,
           token: res.data.token,
         });
-        localStorage.setItem("auth", JSON.stringify(res.data)); // to get data in  local storage
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        // to get data in  local storage used "localStorage.setItem" method & JSON.stringify method.
         navigate("/");
       } else {
         toast.error(res.data.message);

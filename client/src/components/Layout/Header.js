@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { HiShoppingBag } from "react-icons/hi";
 import { useAuth } from "../../context/auth.js";
+import toast from "react-hot-toast";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -16,6 +17,8 @@ const Header = () => {
 
     // function localStorage.remoItem
     localStorage.removeItem("auth");
+    // to get pop up message
+    toast.success("Logout Succesfully");
   };
   return (
     <>

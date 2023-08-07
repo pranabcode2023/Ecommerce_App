@@ -4,7 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
-import { useAuth } from "../../context/auth";
+import { useAuth } from "../../context/auth.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -30,6 +30,8 @@ const Login = () => {
         toast.success(res && res.data.message);
         setAuth({
           ...auth,
+          user: res.data.user,
+          token: res.data.token,
         });
         navigate("/");
       } else {

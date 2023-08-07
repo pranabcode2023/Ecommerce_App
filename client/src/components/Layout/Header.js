@@ -15,7 +15,7 @@ const Header = () => {
     });
 
     // function localStorage.remoItem
-    localStorage.removeItem("token");
+    localStorage.removeItem("auth");
   };
   return (
     <>

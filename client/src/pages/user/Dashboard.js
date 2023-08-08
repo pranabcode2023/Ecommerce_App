@@ -4,7 +4,7 @@ import Layout from "./../../components/Layout/Layout.js";
 const Dashboard = () => {
   return (
     <Layout title={"Dashboard- Ecommerce App"}>
-      <h1>Dashboard</h1>
+      <h1>Dashboard page </h1>
     </Layout>
   );
 };

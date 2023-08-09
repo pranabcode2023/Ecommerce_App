@@ -17,7 +17,7 @@ const Register = () => {
   // form function
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log(name, email, password, phone, address);
+    // console.log(name, email, password, phone, address, answer);
     // toast.success("register successfully"); // toast pop up from react toastify
     try {
       const res = await axios.post(

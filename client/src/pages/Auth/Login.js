@@ -82,7 +82,7 @@ const Login = () => {
                 navigate("/forgot-password");
               }}
             >
-              Forgot Password?
+              Password Forgot ?
             </button>
           </div>
 

@@ -3,6 +3,7 @@ import { NavLink, Link } from "react-router-dom";
 import { HiShoppingBag } from "react-icons/hi";
 import { useAuth } from "../../context/auth.js";
 import toast from "react-hot-toast";
+import Dashboard from "./../../pages/user/Dashboard";
 
 const Header = () => {
   const [auth, setAuth] = useAuth();
@@ -69,14 +70,32 @@ const Header = () => {
               ) : (
                 // if there is user show logout option
                 <>
-                  <li className="nav-item">
+                  <li className="nav-item dropdown">
                     <NavLink
-                      onClick={handleLogout}
-                      to="/login"
-                      className="nav-link"
+                      className="nav-link dropdown-toggle"
+                      href="#"
+                      role="button"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
                     >
-                      Logout
+                      {auth?.user?.name}
                     </NavLink>
+                    <ul className="dropdown-menu">
+                      <li>
+                        <NavLink to="/dashboard" className="dropdown-item">
+                          Dashboard
+                        </NavLink>
+                      </li>
+                      <li>
+                        <NavLink
+                          onClick={handleLogout}
+                          to="/login"
+                          className="dropdown-item"
+                        >
+                          Logout
+                        </NavLink>
+                      </li>
+                    </ul>
                   </li>
                 </>
               )}

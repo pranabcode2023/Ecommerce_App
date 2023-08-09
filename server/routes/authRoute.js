@@ -20,6 +20,9 @@ router.post("/register", registerController);
 //Login||  POST METHOD
 router.post("/login", loginController);
 
+//Forget Password || POST
+router.post("/forgot-password", forgotPasswordController);
+
 //test routes
 router.get("/test", requireSignIn, isAdmin, testController);
 

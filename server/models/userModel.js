@@ -28,6 +28,7 @@ const userSchema = new mongoose.Schema(
       required: true,
     },
 
+    // for forget password
     question: {
       type: String,
       required: true,

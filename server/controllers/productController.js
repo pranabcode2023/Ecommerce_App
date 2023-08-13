@@ -59,8 +59,12 @@ export const getProductController = async (req, res) => {
   try {
     // added filter Select for photo, we dont need photo initialy thats why used minus ,
     //then filter limit only 12 products and filter sort oth base of object
+
+    // added find method to find product and
+    // added populate method to populate. here we populating product category
     const products = await productModel
       .find({})
+      .populate("category")
       .select("-photo")
       .limit(12)
       .sort({ createdAt: -1 });
@@ -76,6 +80,28 @@ export const getProductController = async (req, res) => {
       success: false,
       message: "Error in getting products",
       error: error.message,
+    });
+  }
+};
+
+// get single product
+export const getSingleProductController = async (req, res) => {
+  try {
+    const product = await productModel
+      .findOne({ slug: req.params.slug })
+      .select("-photo")
+      .populate("category");
+    res.status(200).send({
+      success: true,
+      message: "Single Product Fetched",
+      product,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getitng single product",
+      error,
     });
   }
 };

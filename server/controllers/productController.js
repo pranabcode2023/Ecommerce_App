@@ -4,6 +4,7 @@ import productModel from "./../models/productModel.js";
 // fs = file system .its integrated with node , don't need to install extra package
 import fs from "fs";
 
+// to create products
 export const createProductController = async (req, res) => {
   try {
     // to get other information except photo from product schema
@@ -48,6 +49,32 @@ export const createProductController = async (req, res) => {
       success: false,
       error,
       message: "Error in creating product",
+    });
+  }
+};
+
+// get all products
+
+export const getProductController = async (req, res) => {
+  try {
+    // added filter Select for photo, we dont need photo initialy thats why used minus ,
+    //then filter limit only 12 products and filter sort oth base of object
+    const products = await productModel
+      .find({})
+      .select("-photo")
+      .limit(12)
+      .sort({ createdAt: -1 });
+    res.status(200).send({
+      success: true,
+      message: "AllProducts",
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error in getting products",
+      error: error.message,
     });
   }
 };

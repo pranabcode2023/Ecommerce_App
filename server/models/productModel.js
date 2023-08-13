@@ -36,7 +36,7 @@ const productSchema = new mongoose.schema(
       contentType: String,
     },
 
-    Shipping: {
+    shipping: {
       type: Boolean,
     },
   },

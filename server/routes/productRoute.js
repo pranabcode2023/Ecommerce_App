@@ -21,6 +21,6 @@ router.post(
 router.get("/get-product", getProductController);
 
 // get single products
-router.get("/get-product/:id", getSingleProductController);
+router.get("/get-product/:slug", getSingleProductController);
 
 export default router;

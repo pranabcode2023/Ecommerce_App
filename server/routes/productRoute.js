@@ -3,6 +3,7 @@ import { isAdmin, requireSignIn } from "./../middlewares/authMiddleware.js";
 import {
   createProductController,
   getProductController,
+  getSingleProductController,
 } from "../controllers/productController.js";
 import formidable from "express-formidable";
 
@@ -18,4 +19,8 @@ router.post(
 
 // get products
 router.get("/get-product", getProductController);
+
+// get single products
+router.get("/get-product/:id", getSingleProductController);
+
 export default router;

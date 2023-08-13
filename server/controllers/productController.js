@@ -1,6 +1,5 @@
 import slugify from "slugify";
 import productModel from "./../models/productModel.js";
-import slugify from "slugify";
 
 // fs = file system .its integrated with node , don't need to install extra package
 import fs from "fs";
@@ -37,6 +36,12 @@ export const createProductController = async (req, res) => {
       products.photo.data = fs.readFileSync(photo.path);
       products.contentType = photo.type;
     }
+    await products.save();
+    res.status(200).send({
+      success: true,
+      message: "Product created Succesfully ",
+      products,
+    });
   } catch (error) {
     console.log(error);
     res.status(500).send({

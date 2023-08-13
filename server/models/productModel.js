@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const productSchema = new mongoose.schema(
+const productSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -40,7 +40,7 @@ const productSchema = new mongoose.schema(
       type: Boolean,
     },
   },
-  { timestams }
+  { timestams: true }
 );
 
 const productModel = mongoose.model("Products", productSchema);

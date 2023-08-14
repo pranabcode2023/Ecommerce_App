@@ -23,4 +23,6 @@ router.get("/get-product", getProductController);
 // get single products
 router.get("/get-product/:slug", getSingleProductController);
 
+// get photo
+router.get("/product-photo/:pid", productPhotoController);
 export default router;

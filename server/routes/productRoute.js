@@ -2,6 +2,7 @@ import express from "express";
 import { isAdmin, requireSignIn } from "./../middlewares/authMiddleware.js";
 import {
   createProductController,
+  deleteroductController,
   getProductController,
   getSingleProductController,
   productPhotoController,

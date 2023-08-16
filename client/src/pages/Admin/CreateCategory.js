@@ -35,7 +35,7 @@ const CreateCategory = () => {
           </div>
           <div className="col-md-9">
             <h1> Manage Category</h1>
-            <div>
+            <div className="w-75">
               <table className="table">
                 <thead>
                   <tr>

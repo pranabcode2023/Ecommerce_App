@@ -9,6 +9,26 @@ const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
 
+  //hadle form
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/category//create-category`,
+        { name }
+      );
+      if (data?.success) {
+        toast.success(`${data.name} is created`);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong in input form");
+    }
+  };
+
   // get all categories
 
   const getAllCategory = async () => {
@@ -37,8 +57,12 @@ const CreateCategory = () => {
           </div>
           <div className="col-md-9">
             <h1> Manage Category</h1>
-            <div className="p-3">
-              <CategoryForm />
+            <div className="p-3" w-50>
+              <CategoryForm
+                handleSubmit={handleSubmit}
+                value={name}
+                setValue={setName}
+              />
             </div>
             <div className="w-75">
               <table className="table">

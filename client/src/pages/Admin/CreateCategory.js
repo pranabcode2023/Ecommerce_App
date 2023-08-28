@@ -19,7 +19,8 @@ const CreateCategory = () => {
         { name }
       );
       if (data?.success) {
-        toast.success(`${data.name} is created`);
+        toast.success(`${name} is created`);
+        getAllCategory();
       } else {
         toast.error(data.message);
       }
@@ -57,7 +58,7 @@ const CreateCategory = () => {
           </div>
           <div className="col-md-9">
             <h1> Manage Category</h1>
-            <div className="p-3" w-50>
+            <div className="p-3  w-50">
               <CategoryForm
                 handleSubmit={handleSubmit}
                 value={name}
@@ -78,7 +79,10 @@ const CreateCategory = () => {
                       <tr>
                         <td key={c._id}>{c.name}</td>
                         <td>
-                          <button className="btn btn-primary">Edit</button>
+                          <button className="btn btn-primary ms-2">Edit</button>
+                          <button className="btn btn-danger ms-2">
+                            Delete
+                          </button>
                         </td>
                       </tr>
                     </>

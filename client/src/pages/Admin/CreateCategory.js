@@ -8,7 +8,7 @@ import CategoryForm from "../../components/Form/CategoryForm";
 const CreateCategory = () => {
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
-
+  const [visible, setVisible] = useState(false);
   //hadle form
 
   const handleSubmit = async (e) => {

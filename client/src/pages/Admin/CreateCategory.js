@@ -63,10 +63,30 @@ const CreateCategory = () => {
         { name: updatedName }
       );
       if (data.success) {
-        toast.success(data.message);
+        toast.success(`${updatedName} is updated`);
         setSelected(null);
         setUpdatedName("");
         setVisible(false);
+        getAllCategory();
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong while updating ");
+    }
+  };
+
+  // delete category
+
+  const handleDelete = async (pId) => {
+    try {
+      const { data } = await axios.delete(
+        `${process.env.REACT_APP_API}/api/v1/category/delete-category/${pId}`,
+        { name: updatedName }
+      );
+      if (data.success) {
+        toast.success("Category is deleted");
         getAllCategory();
       } else {
         toast.error(data.message);
@@ -111,11 +131,17 @@ const CreateCategory = () => {
                             onClick={() => {
                               setVisible(true);
                               setUpdatedName(c.name);
+                              setSelected(c);
                             }}
                           >
                             Edit
                           </button>
-                          <button className="btn btn-danger ms-2">
+                          <button
+                            className="btn btn-danger ms-2"
+                            onClick={() => {
+                              handleDelete(c._id);
+                            }}
+                          >
                             Delete
                           </button>
                         </td>

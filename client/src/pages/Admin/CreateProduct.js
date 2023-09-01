@@ -52,10 +52,10 @@ const CreateProduct = () => {
         productData
       );
       if (data?.success) {
+        toast.error(data?.message);
+      } else {
         toast.success("Product create successfully");
         navigate("/dashboard/admin/products");
-      } else {
-        toast.error(data?.message);
       }
     } catch (error) {
       console.log(error);
@@ -84,7 +84,7 @@ const CreateProduct = () => {
                 }}
               >
                 {categories?.map((c) => (
-                  <Option key={c._id} value={c.name}>
+                  <Option key={c._id} value={c._id}>
                     {c.name}
                   </Option>
                 ))}

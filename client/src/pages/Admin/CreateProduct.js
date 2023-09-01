@@ -3,6 +3,13 @@ import Layout from "../../components/Layout/Layout";
 import AdminMenu from "../../components/Layout/AdminMenu";
 
 const CreateProduct = () => {
+  const [categories, setCategories] = useState([]);
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [shipping, setShipping] = useState("");
+
   return (
     <Layout title={"Daahboard-Create Product"}>
       <div className="container-fluid m-3 p-3">

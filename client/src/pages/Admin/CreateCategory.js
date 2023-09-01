@@ -58,7 +58,19 @@ const CreateCategory = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
-      console.log(e);
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API}/api/v1/category/update-category/${selected._id}`,
+        { name: updatedName }
+      );
+      if (data.success) {
+        toast.success(data.message);
+        setSelected(null);
+        setUpdatedName("");
+        setVisible(false);
+        getAllCategory();
+      } else {
+        toast.error(data.message);
+      }
     } catch (error) {
       console.log(error);
       toast.error("something went wrong while updating ");

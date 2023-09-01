@@ -53,6 +53,17 @@ const CreateCategory = () => {
     getAllCategory();
   }, []);
 
+  // update category
+
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(e);
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong while updating ");
+    }
+  };
   return (
     <Layout title={"Daahboard-Create Category"}>
       <div className="container-fluid m-3 p-3">
@@ -85,7 +96,10 @@ const CreateCategory = () => {
                         <td>
                           <button
                             className="btn btn-primary ms-2"
-                            onClick={() => setVisible(true)}
+                            onClick={() => {
+                              setVisible(true);
+                              setUpdatedName(c.name);
+                            }}
                           >
                             Edit
                           </button>
@@ -104,7 +118,11 @@ const CreateCategory = () => {
               footer={null}
               visible={visible}
             >
-              <CategoryForm />
+              <CategoryForm
+                value={updatedName}
+                setValue={setUpdatedName}
+                handleSubmit={handleUpdate}
+              />
             </Modal>
           </div>
         </div>

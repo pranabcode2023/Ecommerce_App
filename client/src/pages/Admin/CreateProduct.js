@@ -74,6 +74,29 @@ const CreateProduct = () => {
                   {/*   accept="image/* means all type of image  */}
                 </label>
               </div>
+              <div className="mb-3">
+                {photo && (
+                  <div className="text-center">
+                    <img
+                      src={URL.createObjectURL(photo)}
+                      alt="product-photo"
+                      height={"200px"}
+                      className="img img-responsive"
+                    />
+
+                    {/* use browser properties for img url and used bootstap properties in classname  */}
+                  </div>
+                )}
+              </div>
+              <div className="mb-3">
+                <input
+                  type="text"
+                  value={name}
+                  placeholder="write a name "
+                  className="form-control"
+                  onChange={(e) => setName(e.target.value)}
+                />
+              </div>
             </div>
           </div>
         </div>

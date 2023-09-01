@@ -97,6 +97,48 @@ const CreateProduct = () => {
                   onChange={(e) => setName(e.target.value)}
                 />
               </div>
+              <div className="mb-3">
+                <textarea
+                  type="text"
+                  value={description}
+                  placeholder="write a description "
+                  className="form-control"
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="number"
+                  value={price}
+                  placeholder="write a Price"
+                  className="form-control"
+                  onChange={(e) => setPrice(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <input
+                  type="number"
+                  value={quantity}
+                  placeholder="write a quantity"
+                  className="form-control"
+                  onChange={(e) => setQuantity(e.target.value)}
+                />
+              </div>
+              <div className="mb-3">
+                <Select
+                  bordered={false}
+                  placeholder="Select Shipping "
+                  size="large"
+                  showSearch
+                  className="form-select mb-3"
+                  onChange={(value) => {
+                    setShipping(value);
+                  }}
+                >
+                  <Option value="0">No</Option>
+                  <Option value="1">Yes</Option>
+                </Select>
+              </div>
             </div>
           </div>
         </div>

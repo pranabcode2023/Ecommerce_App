@@ -4,10 +4,12 @@ import AdminMenu from "../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
-
+import { useNavigate } from "react-router-dom";
+import Dashboard from "./../user/Dashboard";
 const { Option } = Select;
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -20,19 +22,46 @@ const CreateProduct = () => {
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/category//get-category`
+        `${process.env.REACT_APP_API}/api/v1/category/get-category`
       );
       if (data?.success) {
         setCategories(data?.category);
       }
     } catch (error) {
       console.log(error);
-      toast.error("Something went wrong in getting category ");
+      toast.error("Something went wrong ");
     }
   };
   useEffect(() => {
     getAllCategory();
   }, []);
+
+  // create product Function
+  const handleCreate = async (e) => {
+    e.preventDefault();
+    try {
+      const productData = new FormData();
+      productData.append("name", name);
+      productData.append("description", description);
+      productData.append("price", price);
+      productData.append("quantity", quantity);
+      productData.append("photo", photo);
+      productData.append("category", category);
+      const { data } = axios.post(
+        `${process.env.REACT_APP_API}/api/v1/product/create-product`,
+        productData
+      );
+      if (data?.success) {
+        toast.success("Product create successfully");
+        navigate("/dashboard/admin/products");
+      } else {
+        toast.error(data?.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("something went wrong");
+    }
+  };
 
   return (
     <Layout title={"Daahboard-Create Product"}>

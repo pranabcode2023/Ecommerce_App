@@ -3,6 +3,9 @@ import Layout from "../../components/Layout/Layout";
 import AdminMenu from "../../components/Layout/AdminMenu";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { Select } from "antd";
+
+const { Option } = Select;
 
 const CreateProduct = () => {
   const [categories, setCategories] = useState([]);

@@ -139,6 +139,11 @@ const CreateProduct = () => {
                   <Option value="1">Yes</Option>
                 </Select>
               </div>
+              <div className="mb-3">
+                <button className="btn btn-primary" onClick={handleCreate}>
+                  CREATE PRODUCT
+                </button>
+              </div>
             </div>
           </div>
         </div>

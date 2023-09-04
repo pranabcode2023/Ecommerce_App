@@ -102,3 +102,9 @@
     justify-content: center;
   }
 
+
+/* ======================= product page ================  */
+.product-link{
+  text-decoration: none;
+  color: black;
+}

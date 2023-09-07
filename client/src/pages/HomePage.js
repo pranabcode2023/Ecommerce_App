@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Layout from "../components/Layout/Layout";
-import { useAuth } from "../context/auth.js";
+
 import axios from "axios";
 
 import { Checkbox } from "antd";
 
 const HomePage = () => {
-  const [auth, setAuth] = useAuth();
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [checked, setChecked] = useState([]);
 
   // get all categories
 
@@ -41,6 +41,17 @@ const HomePage = () => {
       console.log(error);
     }
   };
+  // filter by category
+  const handleFilter = (value, id) => {
+    let all = [...checked];
+
+    if (value) {
+      all.push(id);
+    } else {
+      all = all.filter((c) => c !== id);
+    }
+    setChecked(all);
+  };
 
   useEffect(() => {
     getAllProducts();
@@ -53,13 +64,17 @@ const HomePage = () => {
           <h4 className="text-center">Filter By Category</h4>
           <div className="d-flex flex-column">
             {categories?.map((c) => (
-              <Checkbox key={c._id} onChange={(e) => console.log(e)}>
+              <Checkbox
+                key={c._id}
+                onChange={(e) => handleFilter(e.target.checked, c._id)}
+              >
                 {c.name}
               </Checkbox>
             ))}
           </div>
         </div>
         <div className="col-md-9">
+          {JSON.stringify(checked, null, 4)}
           <h1 className="text-center">All Products</h1>
           <div className="d-flex flex-wrap">
             {products?.map((p) => (

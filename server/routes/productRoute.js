@@ -46,7 +46,7 @@ router.delete("/delete-product/:pid", deleteroductController);
 // filter product
 router.post("/product-filters", productFilterController);
 
-//  product count for load more option or pagination
+// total  product count for load more option or pagination
 router.get("/product-count", productCountController);
 
 //  product per page

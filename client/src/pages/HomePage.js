@@ -30,7 +30,7 @@ const HomePage = () => {
 
   useEffect(() => {
     getAllCategory();
-    // getTotal();
+    getTotal();
   }, []);
 
   //get products
@@ -64,9 +64,15 @@ const HomePage = () => {
   };
 
   // called in useFect with getAllCategory
+  // useEffect(() => {
+  //   getTotal();
+  // }, []);
+
   useEffect(() => {
-    getTotal();
-  }, []);
+    if (page === 1) return;
+    loadMore();
+    //eslint-disable-next-line
+  }, [page]);
 
   // load more functions
   const loadMore = async () => {
@@ -82,11 +88,6 @@ const HomePage = () => {
       setLoading(false);
     }
   };
-  useEffect(() => {
-    if (page === 1) return;
-    loadMore();
-    //eslint-disable-next-line
-  }, [page]);
 
   // filter by category
   const handleFilter = (value, id) => {

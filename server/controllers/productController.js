@@ -237,3 +237,30 @@ export const productCountController = async (req, res) => {
     });
   }
 };
+
+// product list base on page
+
+export const productListController = async (req, res) => {
+  try {
+    const perPage = 6;
+    const page = req.params.page ? req.params.page : 1;
+    // from mongoose documentation
+    const products = await productModel
+      .find({})
+      .select("-photo")
+      .skip((page - 1) * perPage)
+      .limit(perPage)
+      .sort({ createdAt: -1 });
+    res.status(200).send({
+      success: true,
+      products,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: " Error in per page product list ",
+      error,
+    });
+  }
+};

@@ -5,6 +5,7 @@ import {
   deleteroductController,
   getProductController,
   getSingleProductController,
+  productCountController,
   productFilterController,
   productPhotoController,
   updateProductController,
@@ -43,4 +44,8 @@ router.delete("/delete-product/:pid", deleteroductController);
 
 // filter product
 router.post("/product-filters", productFilterController);
+
+//  product count for load more option or pagination
+router.get("/product-count", productCountController);
+
 export default router;

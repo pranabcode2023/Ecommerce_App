@@ -54,8 +54,28 @@ const HomePage = () => {
   };
 
   useEffect(() => {
-    getAllProducts();
-  }, []);
+    if (!checked.length || !radio.length) getAllProducts();
+  }, [checked.length, radio.length]);
+
+  //get filterd product
+  const filterProduct = async () => {
+    try {
+      const { data } = await axios.post(
+        `${process.env.REACT_APP_API}/api/v1/product/product-filters`,
+        {
+          checked,
+          radio,
+        }
+      );
+      setProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (checked.length || radio.length) filterProduct();
+  }, [checked, radio]);
 
   return (
     <Layout title={" All Products- Best offers"}>
@@ -100,7 +120,11 @@ const HomePage = () => {
                 />
                 <div className="card-body">
                   <h5 className="card-title">{p.name}</h5>
-                  <p className="card-text">{p.description} </p>
+                  <p className="card-text">
+                    {/* substring function used to show maximum 30 character  */}
+                    {p.description.substring(0, 30)}...{" "}
+                  </p>
+                  <p className="card-text">€ {p.price} </p>
                   <button className="btn btn-primary ms-1">More Details</button>
                   <button className="btn btn-secondary ms-1">
                     ADD TO CART

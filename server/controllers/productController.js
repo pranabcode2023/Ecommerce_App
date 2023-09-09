@@ -218,3 +218,22 @@ export const productFilterController = async (req, res) => {
     });
   }
 };
+
+// product count /pagination/load more
+
+export const productCountController = async (req, res) => {
+  try {
+    const total = await productModel.find({}).estimatedDocumentCount();
+    res.status(200).send({
+      success: true,
+      total,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error products count",
+      error,
+    });
+  }
+};

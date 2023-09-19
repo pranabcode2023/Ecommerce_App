@@ -4,10 +4,10 @@ import { HiShoppingBag } from "react-icons/hi";
 import { useAuth } from "../../context/auth.js";
 import toast from "react-hot-toast";
 import SearchInput from "./../Form/SearchInput";
-
+import useCategory from "../../hooks/useCategory.js";
 const Header = () => {
   const [auth, setAuth] = useAuth();
-
+const categories = useCategory()
   // Logout function to execute onClick event
   const handleLogout = () => {
     setAuth({

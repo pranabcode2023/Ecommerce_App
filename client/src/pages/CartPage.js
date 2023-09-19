@@ -30,7 +30,7 @@ const CartPage = () => {
             </h1>
 
             <h4 className="text-center ">
-              {cart?.length > 1
+              {cart?.length
                 ? `You Have ${cart.length} items in your cart ${
                     auth?.token ? "" : "Please login to Checkout"
                   }`

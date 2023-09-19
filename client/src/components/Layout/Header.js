@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import SearchInput from "./../Form/SearchInput";
 import useCategory from "../../hooks/useCategory.js";
 import { useCart } from "../../context/cart.js";
+import { Badge } from "antd";
 const Header = () => {
   const [auth, setAuth] = useAuth();
   const [cart] = useCart();
@@ -131,9 +132,13 @@ const Header = () => {
               )}
 
               <li className="nav-item">
-                <NavLink to="/cart" className="nav-link">
-                  Cart {cart?.length}
-                </NavLink>
+                {/* //NOTE - Badge ribbon code used from antd  */}
+                <Badge className="mt-2" count={cart?.length} showZero>
+                  <NavLink to="/cart" className="nav-link">
+                    Cart
+                    {/* Cart {cart?.length} */}
+                  </NavLink>
+                </Badge>
               </li>
             </ul>
           </div>

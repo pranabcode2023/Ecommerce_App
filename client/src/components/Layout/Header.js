@@ -5,9 +5,11 @@ import { useAuth } from "../../context/auth.js";
 import toast from "react-hot-toast";
 import SearchInput from "./../Form/SearchInput";
 import useCategory from "../../hooks/useCategory.js";
+import { useCart } from "../../context/cart.js";
 const Header = () => {
   const [auth, setAuth] = useAuth();
-const categories = useCategory()
+  const [cart] = useCart();
+  const categories = useCategory();
   // Logout function to execute onClick event
   const handleLogout = () => {
     setAuth({
@@ -47,7 +49,7 @@ const categories = useCategory()
                   Home
                 </NavLink>
               </li>
-              
+
               <li className="nav-item dropdown">
                 <Link
                   className="nav-link dropdown-toggle"
@@ -130,7 +132,7 @@ const categories = useCategory()
 
               <li className="nav-item">
                 <NavLink to="/cart" className="nav-link">
-                  Cart(0)
+                  Cart {cart?.length}
                 </NavLink>
               </li>
             </ul>

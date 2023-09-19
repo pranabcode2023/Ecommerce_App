@@ -7,7 +7,7 @@ export default function useCategory(){
     // get Category 
 const getCategories = async()=>{
     try {
-        const { data } = await axios.delete(
+        const { data } = await axios.get(
             `${process.env.REACT_APP_API}/api/v1/category/get-category`);
             setCategories(data?.category)
     } catch (error) {
@@ -21,4 +21,6 @@ useEffect(()=>{
 
 return categories;
 }
+
+
 

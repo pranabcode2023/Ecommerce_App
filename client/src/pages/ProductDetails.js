@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 const ProductDetails = () => {
     const params = useParams()
     const [product, setProduct] = useState({})
+    const [relatedProducts, setRelatedProducts] = useState([]);
     //intial product details
     useEffect(()=>{
         if (params?.slug) getProduct()
@@ -15,11 +16,24 @@ const ProductDetails = () => {
             const {data}= await axios.get(
                 `${process.env.REACT_APP_API}/api/v1/product/get-product/${params.slug}`
               );
-              setProduct(data?.product)
+              setProduct(data?.product);
+              getSimilarProduct(data?.product._id, data?.product.category._id);
         } catch (error) {
             console.log(error)
         }
     }
+
+     //get similar product
+  const getSimilarProduct = async (pid, cid) => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/product/related-product/${pid}/${cid}`
+      );
+      setRelatedProducts(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout>
        
@@ -32,8 +46,7 @@ const ProductDetails = () => {
                       src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`}
                       className="card-img-top"
                       alt={product.name}
-                      height= {'400'}
-                      width={'350px'}
+                      height= '500'
                     />
             </div>
             <div className="col-md-6 product-details-info">
@@ -53,7 +66,32 @@ const ProductDetails = () => {
         </div>
       </div>
         <div className='row'>
-            Similar Products
+            <h1>Similar Products</h1>
+              {/* for checking function working or not  */}
+            {/* {JSON.stringify(relatedProducts, null,4)} */}
+            <div className="d-flex flex-wrap">
+            {relatedProducts?.map((p) => (
+              <div className="card m-2" style={{ width: "18rem" }}>
+                <img
+                  src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                  className="card-img-top"
+                  alt={p.name}
+                />
+                <div className="card-body">
+                  <h5 className="card-title">{p.name}</h5>
+                  <p className="card-text">
+                    {/* substring function used to show maximum 30 character  */}
+                    {p.description.substring(0, 30)}...{" "}
+                  </p>
+                  <p className="card-text">€ {p.price} </p>
+                 
+                  <button className="btn btn-secondary ms-1">
+                    ADD TO CART
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
     </Layout>
   )

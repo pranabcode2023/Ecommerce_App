@@ -8,7 +8,25 @@ const CartPage = () => {
   const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
-  // remove cart item
+
+  // Calculate Total Price
+
+  const totalPrice = () => {
+    try {
+      let total = 0;
+      cart?.map((item) => {
+        total = total + item.price;
+      });
+      return total.toLocaleString("de-EU", {
+        style: "currency",
+        currency: "EUR",
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Delete  cart item
   const removeCartItem = (pid) => {
     try {
       let myCart = [...cart];
@@ -63,7 +81,12 @@ const CartPage = () => {
               </div>
             ))}
           </div>
-          <div className="col-md-4"> checkout | Payment </div>
+          <div className="col-md-4 text-center">
+            <h2> Cart Summary</h2>
+            <p>Total |Checkout | Payment</p>
+            <hr />
+            <h4> Total: {totalPrice()} </h4>
+          </div>
         </div>
       </div>
     </Layout>

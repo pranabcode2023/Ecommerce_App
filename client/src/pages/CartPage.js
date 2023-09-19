@@ -8,7 +8,17 @@ const CartPage = () => {
   const navigate = useNavigate();
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
-
+  // remove cart item
+  const removeCartItem = (pid) => {
+    try {
+      let myCart = [...cart];
+      let index = myCart.findIndex((item) => item._id === pid);
+      myCart.splice(index, 1);
+      setCart(myCart);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout>
       <div className="container">
@@ -28,8 +38,31 @@ const CartPage = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-9"> Cart Item</div>
-          <div className="col-md-3"> checkout | Payment </div>
+          <div className="col-md-8">
+            {cart?.map((p) => (
+              <div className="row m-2 p-2 card flex-row ">
+                <div className="col-md-4">
+                  <img
+                    src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                    className="card-img-top"
+                    alt={p.name}
+                  />
+                </div>
+                <div className="col-md-8">
+                  <p>{p.name}</p>
+                  <p>{p.description.substring(0, 30)}</p>
+                  <p>Price : {p.price} €</p>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => removeCartItem(p._id)}
+                  >
+                    REMOVE
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+          <div className="col-md-4"> checkout | Payment </div>
         </div>
       </div>
     </Layout>

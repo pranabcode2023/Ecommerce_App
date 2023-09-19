@@ -67,11 +67,11 @@ const ProductDetails = () => {
       </div>
       {/* Horizontal row */}
       <hr/>
-        <div className='row'>
+        <div className='row container'>
            {/* for checking function working or not  */}
             {/* {JSON.stringify(relatedProducts, null,4)} */}
-            <h6>Similar Products</h6>
-             {relatedProducts.length <1 && (<p>No Similar Products Found</p>)}
+            <h4>Similar Products</h4>
+             {relatedProducts.length <1 && (<p className='text-center'>No Similar Products Found</p>)}
           <div className="d-flex flex-wrap">
             {relatedProducts?.map((p) => (
               <div className="card m-2" style={{ width: "18rem" }}>

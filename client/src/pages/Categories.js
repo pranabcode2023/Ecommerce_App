@@ -5,7 +5,7 @@ import Layout from '../components/Layout/Layout'
 const Categories = () => {
   return (
     <Layout title={'All Categories'}>
-  <h1></h1>
+  <h1>All Categories</h1>
     </Layout>
   )
 }

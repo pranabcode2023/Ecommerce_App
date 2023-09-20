@@ -240,7 +240,7 @@ export const getOrdersController = async (req, res) => {
     res.json(orders);
   } catch (error) {
     console.log(error);
-    res.status(400).send({
+    res.status(500).send({
       success: false,
       message: "Error while getting orders ",
       error,
@@ -257,6 +257,28 @@ export const getALLOrdersController = async (req, res) => {
       .populate("products", "-photo")
       .populate("buyer", "name")
       .sort({ createdAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send({
+      success: false,
+      message: "Error while getting orders ",
+      error,
+    });
+  }
+};
+
+//order status update
+
+export const ordersStatusController = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+    const { status } = req.body;
+    const orders = await orderModel.findByIdAndUpdate(
+      orderId,
+      { status },
+      { new: true }
+    );
     res.json(orders);
   } catch (error) {
     console.log(error);

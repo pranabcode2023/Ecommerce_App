@@ -29,8 +29,8 @@ const Profile = () => {
     // console.log(name, email, password, phone, address, answer);
     // toast.success("register successfully"); // toast pop up from react toastify
     try {
-      const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/register`,
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API}/api/v1/auth/profile-update`,
         {
           name,
           email,
@@ -40,11 +40,16 @@ const Profile = () => {
         }
       );
 
-      // if (res && res.data.success) {
-      //   toast.success(res && res.data.message);
-      // } else {
-      //   toast.error(res.data.message);
-      // }
+      if (data?.error) {
+        toast.error(data?.error);
+      } else {
+        setAuth({ ...auth, user: data?.updatedUser });
+        let ls = localStorage.getItem("auth");
+        ls = JSON.parse(ls);
+        ls.user = data.updatedUser;
+        localStorage.setItem("auth", JSON.stringify(ls));
+        toast.success("Profile updated Successfully");
+      }
     } catch (error) {
       console.log(error);
       toast.error("Something went wrong");
@@ -70,7 +75,6 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputName"
                     placeholder="Enter your Name"
-                    required //  validation
                   />
                 </div>
                 <div className="mb-3">
@@ -81,7 +85,6 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     placeholder="Enter your Email"
-                    required
                     //NOTE - method used for disable the input field. thats why it's not possible to edit anymore
                     disabled
                   />
@@ -94,7 +97,6 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputPassword1"
                     placeholder="Enter your password"
-                    required
                   />
                 </div>
 
@@ -106,7 +108,6 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     placeholder="Enter your Phone no."
-                    required
                   />
                 </div>
                 <div className="mb-3">
@@ -117,7 +118,6 @@ const Profile = () => {
                     className="form-control"
                     id="exampleInputEmail1"
                     placeholder="Enter your Address"
-                    required
                   />
                 </div>
 

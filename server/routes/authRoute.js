@@ -49,4 +49,7 @@ router.get("/orders", requireSignIn, getOrdersController);
 // All Orders for Admin
 router.get("/all-orders", requireSignIn, isAdmin, getALLOrdersController);
 
+//  Orders status update
+router.put("/orders-status", requireSignIn, isAdmin, ordersStatusController);
+
 export default router;

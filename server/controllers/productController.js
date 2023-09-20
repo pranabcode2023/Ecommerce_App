@@ -1,9 +1,20 @@
 import slugify from "slugify";
 import productModel from "./../models/productModel.js";
 import categoryModel from "./../models/categoryModel.js";
-
 // fs = file system .its integrated with node , don't need to install extra package
 import fs from "fs";
+import braintree from "braintree";
+import dotenv from "dotenv";
+
+dotenv.config();
+
+//payment gatway
+let gateway = new braintree.BraintreeGateway({
+  environment: braintree.Environment.Sandbox,
+  merchantId: process.env.BRAINTREE_MERCHANT_ID,
+  publicKey: process.env.BRAINTREE_PUBLIC_KEY,
+  privateKey: process.env.BRAINTREE_PRIVATE_KEY,
+});
 
 // to create products
 export const createProductController = async (req, res) => {
@@ -333,5 +344,29 @@ export const productCategoryController = async (req, res) => {
       message: " Error while getting product by category",
       error,
     });
+  }
+};
+
+//payment gatway api
+//token
+export const braintreeTokenController = async (req, res) => {
+  try {
+    gateway.clientToken.generate({}, function (err, response) {
+      if (err) {
+        res.status(500).send(err);
+      } else {
+        res.send(response);
+      }
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//payment
+export const braintreePaymentController = async (req, res) => {
+  try {
+  } catch (error) {
+    console.log(error);
   }
 };

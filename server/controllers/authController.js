@@ -247,3 +247,23 @@ export const getOrdersController = async (req, res) => {
     });
   }
 };
+
+// all Orders for Admin
+
+export const getALLOrdersController = async (req, res) => {
+  try {
+    const orders = await orderModel
+      .find({})
+      .populate("products", "-photo")
+      .populate("buyer", "name")
+      .sort({ createdAt: "-1" });
+    res.json(orders);
+  } catch (error) {
+    console.log(error);
+    res.status(400).send({
+      success: false,
+      message: "Error while getting orders ",
+      error,
+    });
+  }
+};

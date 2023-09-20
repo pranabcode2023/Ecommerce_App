@@ -1,6 +1,7 @@
 import slugify from "slugify";
 import productModel from "./../models/productModel.js";
 import categoryModel from "./../models/categoryModel.js";
+import orderModel from "../models/orderModel.js";
 // fs = file system .its integrated with node , don't need to install extra package
 import fs from "fs";
 import braintree from "braintree";
@@ -8,7 +9,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-//payment gatway
+//NOTE - payment gatway copid from braintree website
 let gateway = new braintree.BraintreeGateway({
   environment: braintree.Environment.Sandbox,
   merchantId: process.env.BRAINTREE_MERCHANT_ID,
@@ -366,6 +367,33 @@ export const braintreeTokenController = async (req, res) => {
 //payment
 export const braintreePaymentController = async (req, res) => {
   try {
+    //NOTE - nonce is from braintree documentation "nonce-from-the-client"
+    const { cart, nonce } = req.body;
+    let total = 0;
+    cart.map((i) => {
+      total += i.price;
+    });
+    let newTransaction = gateway.transaction.sale(
+      {
+        amount: total,
+        paymentMethodNonce: nonce,
+        options: {
+          submitForSettlement: true,
+        },
+      },
+      function (error, result) {
+        if (result) {
+          const order = new orderModel({
+            products: cart,
+            payment: result,
+            buyer: req.user._id,
+          }).save();
+          res.json({ ok: true });
+        } else {
+          res.status(500).send(error);
+        }
+      }
+    );
   } catch (error) {
     console.log(error);
   }

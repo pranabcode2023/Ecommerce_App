@@ -33,6 +33,21 @@ const AdminOrders = () => {
   useEffect(() => {
     if (auth?.token) getOrders();
   }, [auth?.token]);
+
+  // handle change
+  const handleChange = async (orderId, value) => {
+    try {
+      const { data } = await axios.put(
+        `${process.env.REACT_APP_API}/api/v1/auth/orders-status/${orderId}`,
+        {
+          status: value,
+        }
+      );
+      getOrders();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Layout title={"All Orders Data"}>
       <div className="row">
@@ -61,11 +76,11 @@ const AdminOrders = () => {
                       <td>
                         <Select
                           bordered={false}
-                          onChange={(value) => setChangeStatus(value)}
+                          onChange={(value) => handleChange(o._id, value)}
                           defaultValue={o?.status}
                         >
                           {status.map((s, i) => (
-                            <Option key={i} value={status}>
+                            <Option key={i} value={s}>
                               {s}
                             </Option>
                           ))}
@@ -79,6 +94,7 @@ const AdminOrders = () => {
                     </tr>
                   </tbody>
                 </table>
+
                 <div className="container">
                   {o?.products?.map((p, i) => (
                     <div className="row m-2 p-2 card flex-row ">
@@ -89,6 +105,7 @@ const AdminOrders = () => {
                           alt={p.name}
                         />
                       </div>
+
                       <div className="col-md-8">
                         <p>{p.name}</p>
                         <p>{p.description.substring(0, 30)}</p>

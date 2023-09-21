@@ -15,6 +15,7 @@ const ProductDetails = () => {
   //intial product details
   useEffect(() => {
     if (params?.slug) getProduct();
+    //eslint-disable-next-line
   }, [params?.slug]);
   //get product
   const getProduct = async () => {

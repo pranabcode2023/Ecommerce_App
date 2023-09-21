@@ -10,6 +10,7 @@ import "../styles/CartStyles.css";
 
 const CartPage = () => {
   const navigate = useNavigate();
+  //eslint-disable-next-line
   const [auth, setAuth] = useAuth();
   const [cart, setCart] = useCart();
   const [clientToken, setClientToken] = useState("");
@@ -66,6 +67,7 @@ const CartPage = () => {
     try {
       setLoading(true);
       const { nonce } = await instance.requestPaymentMethod();
+      //eslint-disable-next-line
       const { data } = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/product/braintree/payment`,
         {

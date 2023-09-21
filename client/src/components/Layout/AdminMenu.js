@@ -1,6 +1,5 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import Orders from "./../../pages/user/Orders";
 const AdminMenu = () => {
   return (
     <>

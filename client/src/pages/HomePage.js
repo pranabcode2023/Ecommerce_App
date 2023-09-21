@@ -130,6 +130,7 @@ const HomePage = () => {
 
   useEffect(() => {
     if (checked.length || radio.length) filterProduct();
+    //eslint-disable-next-line
   }, [checked, radio]);
 
   return (

@@ -12,12 +12,15 @@ const CategoryProduct = () => {
   const [cart, setCart] = useCart();
   const [products, setProducts] = useState([]);
   const [category, setCategory] = useState([]);
+  //eslint-disable-next-line
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(1);
+  //eslint-disable-next-line
   const [loading, setLoading] = useState(1);
 
   useEffect(() => {
     if (params?.slug) getProductsByCategory();
+    //eslint-disable-next-line
   }, [params?.slug]);
   const getProductsByCategory = async () => {
     try {

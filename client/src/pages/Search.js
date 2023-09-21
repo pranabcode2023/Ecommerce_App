@@ -6,6 +6,7 @@ import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
 const Search = () => {
   const navigate = useNavigate();
+  //eslint-disable-next-line
   const [values, setValues] = useSearch();
   const [cart, setCart] = useCart();
   return (

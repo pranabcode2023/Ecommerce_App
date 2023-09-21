@@ -115,10 +115,17 @@ const CartPage = () => {
                       alt={p.name}
                     />
                   </div>
-                  <div className="col-md-4">
+                  <div className="col-md-4 card-price">
                     <p>{p.name}</p>
-                    <p>{p.description.substring(0, 30)}</p>
-                    <p>Price : {p.price} €</p>
+                    <p>{p.description.substring(0, 50)}...</p>
+                    <p>
+                      {/* Price : {p.price} € */}
+                      Price:
+                      {p.price.toLocaleString("de-EU", {
+                        style: "currency",
+                        currency: "EUR",
+                      })}
+                    </p>
                   </div>
                   <div className="col-md-4 cart-remove-btn">
                     <button

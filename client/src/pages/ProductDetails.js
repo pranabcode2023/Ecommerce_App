@@ -41,12 +41,12 @@ const ProductDetails = () => {
     }
   };
   return (
-    <Layout>
+    <Layout title={"product-details"}>
       {/* for checking function working or not  */}
       {/* {JSON.stringify(product, null,4)} */}
 
       <div className="row container product-details">
-        <div className="col-md-5 ">
+        <div className="col-md-6 ">
           <img
             src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${product._id}`}
             className="card-img-top"
@@ -54,7 +54,7 @@ const ProductDetails = () => {
             height="500"
           />
         </div>
-        <div className="col-md-7 product-details-info">
+        <div className="col-md-6 product-details-info">
           <h1 className="text-center">Product Details</h1>
           <hr />
           <h6>Name : {product.name}</h6>
@@ -67,9 +67,23 @@ const ProductDetails = () => {
             })}
           </h6>
           <h6>Category : {product?.category?.name}</h6>
-          <button class="btn btn-secondary ms-1">ADD TO CART</button>
+          {/* <button class="btn btn-secondary ms-1">ADD TO CART</button> */}
+
+          {/* <p className="card-text">€ {p.price} </p> */}
+
+          <button
+            className="btn btn-secondary ms-1"
+            onClick={() => {
+              setCart([...cart, product]);
+              localStorage.setItem("cart", JSON.stringify([...cart, product]));
+              toast.success("Iteam added to Cart");
+            }}
+          >
+            ADD TO CART
+          </button>
         </div>
       </div>
+
       {/* Horizontal row */}
       <hr />
       <div className="row container similar-products">

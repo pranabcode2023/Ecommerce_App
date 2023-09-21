@@ -5,8 +5,7 @@ import connectDB from "./config/db.js";
 import authRoutes from "./routes/authRoute.js";
 import categoryRoutes from "./routes/categoryRoute.js";
 import productRoutes from "./routes/productRoute.js";
-// import cors from "cors";
-import { corsOptions } from "cors";
+import cors from "cors";
 
 //configure dotenv
 dotenv.config();
@@ -18,7 +17,7 @@ connectDB();
 const app = express();
 
 //middelwares
-// app.use(cors());
+app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 
@@ -59,7 +58,7 @@ const corsOptions = {
     }
   },
 };
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 //run listen
 app.listen(PORT, () => {

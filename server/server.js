@@ -42,9 +42,12 @@ const PORT = process.env.PORT || 8080;
 // console.log('LOCALHOST_CLIENT', process.env.LOCALHOST_CLIENT)
 
 const allowedOrigins = [
+  "http://localhost:3000",
+  "https://ecommerce-mern-stack-app-vercel-client.vercel.app",
+
   //NOTE - url put into env file
-  process.env.LOCALHOST_CLIENT,
-  process.env.VERCEL_CLIENT,
+  // process.env.LOCALHOST_CLIENT,
+  // process.env.VERCEL_CLIENT,
 ];
 
 // const corsOptions = {

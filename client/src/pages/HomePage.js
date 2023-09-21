@@ -6,6 +6,8 @@ import { Prices } from "../components/Prices";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/cart";
 import toast from "react-hot-toast";
+import { AiOutlineReload } from "react-icons/ai";
+import "../styles/HomepageStyles.css";
 const HomePage = () => {
   const navigate = useNavigate();
   const [cart, setCart] = useCart();
@@ -132,6 +134,15 @@ const HomePage = () => {
 
   return (
     <Layout title={" All Products- Best offers"}>
+      {/* banner image */}
+      <img
+        src="/images/banner.png"
+        className="banner-img"
+        alt="bannerimage"
+        width={"100%"}
+      />
+      {/* banner image */}
+
       <div className="container-fluid row mt-3 home-page">
         <div className="col-md-3 filters">
           {/* Filter by Category  */}
@@ -183,45 +194,75 @@ const HomePage = () => {
                   alt={p.name}
                 />
                 <div className="card-body">
-                  <h5 className="card-title">{p.name}</h5>
+                  {/* <h5 className="card-title">{p.name}</h5> */}
+                  <div className="card-name-price">
+                    <h5 className="card-title">{p.name}</h5>
+                    <h5 className="card-title card-price">
+                      {p.price.toLocaleString("de-EU", {
+                        style: "currency",
+                        currency: "EUR",
+                      })}
+                    </h5>
+                  </div>
+
                   <p className="card-text">
-                    {/* substring function used to show maximum 30 character  */}
-                    {p.description.substring(0, 30)}...{" "}
+                    {/* substring function used to show maximum 50 character  */}
+                    {p.description.substring(0, 50)}...
                   </p>
-                  <p className="card-text">€ {p.price} </p>
-                  <button
-                    className="btn btn-primary ms-1"
-                    onClick={() => navigate(`/product/${p.slug}`)}
-                  >
-                    More Details
-                  </button>
-                  <button
-                    className="btn btn-secondary ms-1"
-                    onClick={() => {
-                      setCart([...cart, p]);
-                      localStorage.setItem(
-                        "cart",
-                        JSON.stringify([...cart, p])
-                      );
-                      toast.success("Iteam added to Cart");
-                    }}
-                  >
-                    ADD TO CART
-                  </button>
+
+                  {/* <p className="card-text">€ {p.price} </p> */}
+                  <div className="card-name-price">
+                    <button
+                      className="btn btn-primary ms-1"
+                      onClick={() => navigate(`/product/${p.slug}`)}
+                    >
+                      More Details
+                    </button>
+                    <button
+                      className="btn btn-secondary ms-1"
+                      onClick={() => {
+                        setCart([...cart, p]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, p])
+                        );
+                        toast.success("Iteam added to Cart");
+                      }}
+                    >
+                      ADD TO CART
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
+
           <div className="m-2 p-3">
             {products && products.length < total && (
+              // <button
+              //   className="btn loadmore"
+              //   onClick={(e) => {
+              //     e.preventDefault();
+              //     setPage(page + 1);
+              //   }}
+              // >
+              //   {loading ? "loading ..." : "Loadmore"}
+              // </button>
               <button
-                className="btn btn-warning"
+                className="btn loadmore"
                 onClick={(e) => {
                   e.preventDefault();
                   setPage(page + 1);
                 }}
               >
-                {loading ? "loading ..." : "Loadmore"}
+                {loading ? (
+                  "Loading ..."
+                ) : (
+                  <>
+                    {" "}
+                    Loadmore <AiOutlineReload />
+                  </>
+                )}
               </button>
             )}
           </div>

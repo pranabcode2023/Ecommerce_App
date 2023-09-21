@@ -20,7 +20,9 @@ const Login = () => {
     // toast.success("register successfully"); // toast pop up from react toastify
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/login`,
+        // `${process.env.REACT_APP_API}/api/v1/auth/login`,
+        "https://ecommerce-mern-stack-app-vercel-server.vercel.app/api/v1/auth/login",
+
         {
           email,
           password,

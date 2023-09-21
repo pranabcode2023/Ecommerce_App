@@ -58,7 +58,7 @@ const corsOptions = {
     }
   },
 };
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 //run listen
 app.listen(PORT, () => {

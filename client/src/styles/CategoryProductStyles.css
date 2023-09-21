@@ -1,6 +1,7 @@
 .category {
     flex-wrap: wrap;
     margin-top: 80px !important;
+    height: 75vh;
 }
 
 .category .card {

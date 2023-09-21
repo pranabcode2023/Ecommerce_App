@@ -1,6 +1,7 @@
-/* .cart-page {
-    margin-top: 64px;
-} */
+.cart-page {
+    /* margin-top: 64px; */
+    height: 82vh;
+}
 
 .cart-page h1 {
     padding: 15px !important;

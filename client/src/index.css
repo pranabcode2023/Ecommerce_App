@@ -60,8 +60,9 @@
 
 /* **************************navbar ************************************** */
 .footer{
+    position: relative;
     color: #fff;
-    padding: 25px;
+    padding: 15px;
     background-color: black;
 }
 
@@ -112,7 +113,7 @@
 .contactus {
     margin: 0;
     padding: 0;
-    height: 70vh;
+    height: 85vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,6 +127,9 @@
 }
 
 /* ======================= Category page ================  */
+.categories-page{
+  height: 80vh;
+}
 .cat-btn {
   background-color: darkcyan;
   padding: 40px 0px;

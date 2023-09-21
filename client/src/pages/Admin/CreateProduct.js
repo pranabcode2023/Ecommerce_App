@@ -16,6 +16,7 @@ const CreateProduct = () => {
   const [price, setPrice] = useState("");
   const [category, setCategory] = useState("");
   const [quantity, setQuantity] = useState("");
+  // eslint-disable-next-line
   const [shipping, setShipping] = useState("");
   const [photo, setPhoto] = useState("");
   // get all category

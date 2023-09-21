@@ -22,6 +22,7 @@ const CartPage = () => {
   const totalPrice = () => {
     try {
       let total = 0;
+      // eslint-disable-next-line
       cart?.map((item) => {
         total = total + item.price;
       });

@@ -93,6 +93,7 @@ const UpdateProduct = () => {
     try {
       let answer = window.prompt("Are You Sure want to delete this product ? ");
       if (!answer) return;
+      // eslint-disable-next-line
       const { data } = await axios.delete(
         `${process.env.REACT_APP_API}/api/v1/product/delete-product/${id}`
       );

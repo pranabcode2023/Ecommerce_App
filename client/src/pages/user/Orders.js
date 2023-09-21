@@ -4,6 +4,7 @@ import UserMenu from "../../components/Layout/UserMenu";
 import axios from "axios";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
+import { serverURL } from "../../utilis/serverURL";
 const Orders = () => {
   const [orders, setOrders] = useState([]);
   // eslint-disable-next-line
@@ -11,7 +12,8 @@ const Orders = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/auth/orders`
+        // `${process.env.REACT_APP_API}/api/v1/auth/orders`
+        `${serverURL}/api/v1/auth/orders`
       );
       setOrders(data);
     } catch (error) {
@@ -66,7 +68,8 @@ const Orders = () => {
                       <div className="row m-2 p-2 card flex-row ">
                         <div className="col-md-4">
                           <img
-                            src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                            // src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                            src={`${serverURL}/api/v1/product/product-photo/${p._id}`}
                             className="card-img-top"
                             alt={p.name}
                           />

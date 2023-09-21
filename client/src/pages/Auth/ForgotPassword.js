@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import "../../styles/AuthStyles.css";
+import { serverURL } from "../../utilis/serverURL";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -18,7 +19,8 @@ const ForgotPassword = () => {
     // toast.success("password reset  successfully"); // toast pop up from react hot toast
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API}/api/v1/auth/forgot-password`,
+        // `${process.env.REACT_APP_API}/api/v1/auth/forgot-password`,
+        `${serverURL}/api/v1/auth/forgot-password`,
         {
           email,
           newPassword,

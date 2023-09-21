@@ -6,6 +6,7 @@ import Layout from "../../components/Layout/Layout";
 import { useAuth } from "../../context/auth";
 import moment from "moment";
 import { Select } from "antd";
+import { serverURL } from "../../utilis/serverURL";
 const { Option } = Select;
 const AdminOrders = () => {
   // eslint-disable-next-line
@@ -24,7 +25,8 @@ const AdminOrders = () => {
   const getOrders = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/auth/all-orders`
+        // `${process.env.REACT_APP_API}/api/v1/auth/all-orders`
+        `${serverURL}/api/v1/auth/all-orders`
       );
       setOrders(data);
     } catch (error) {
@@ -41,7 +43,8 @@ const AdminOrders = () => {
     try {
       // eslint-disable-next-line
       const { data } = await axios.put(
-        `${process.env.REACT_APP_API}/api/v1/auth/orders-status/${orderId}`,
+        // `${process.env.REACT_APP_API}/api/v1/auth/orders-status/${orderId}`,
+        `${serverURL}/api/v1/auth/orders-status/${orderId}`,
         {
           status: value,
         }
@@ -103,7 +106,8 @@ const AdminOrders = () => {
                     <div className="row m-2 p-2 card flex-row ">
                       <div className="col-md-4">
                         <img
-                          src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                          // src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                          src={`${serverURL}/api/v1/product/product-photo/${p._id}`}
                           className="card-img-top"
                           alt={p.name}
                         />

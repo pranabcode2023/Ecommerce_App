@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { Select } from "antd";
 import { useNavigate } from "react-router-dom";
+import { serverURL } from "../../utilis/serverURL";
 
 const { Option } = Select;
 
@@ -23,7 +24,8 @@ const CreateProduct = () => {
   const getAllCategory = async () => {
     try {
       const { data } = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/category/get-category`
+        // `${process.env.REACT_APP_API}/api/v1/category/get-category`
+        `${serverURL}/api/v1/category/get-category`
       );
       if (data?.success) {
         setCategories(data?.category);
@@ -49,7 +51,8 @@ const CreateProduct = () => {
       productData.append("photo", photo);
       productData.append("category", category);
       const { data } = axios.post(
-        `${process.env.REACT_APP_API}/api/v1/product/create-product`,
+        // `${process.env.REACT_APP_API}/api/v1/product/create-product`,
+        `${serverURL}/api/v1/product/create-product`,
         productData
       );
       if (data?.success) {

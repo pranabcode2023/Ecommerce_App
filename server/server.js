@@ -18,12 +18,9 @@ connectDB();
 const app = express();
 
 //middelwares
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
-
-// for cyclic deployment
-// app.use(express.static(path.join(__dirname, "./client/build")));
 
 //routes
 app.use("/api/v1/auth", authRoutes);
@@ -36,13 +33,30 @@ app.get("/", (req, res) => {
   res.send("<h1>Welcome to ecommerce app MERN STACK</h1>");
 });
 
-//rest api for cyclic deployment
-// app.use("*", function (req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
-
 //port
 const PORT = process.env.PORT || 8080;
+
+//REVIEW[epic=deploy, seq=2] once the client is deployed we can add the URL to the list of allowed Origins
+
+//REVIEW[epic=deploy, seq=3] the first origin should be the localhost port our client runs on. The second one, vercel's URL for our client
+// console.log('LOCALHOST_CLIENT', process.env.LOCALHOST_CLIENT)
+
+const allowedOrigins = [
+  //NOTE - url put into env file
+  process.env.LOCALHOST_CLIENT,
+  process.env.VERCEL_CLIENT,
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+};
+app.use(cors(corsOptions));
 
 //run listen
 app.listen(PORT, () => {

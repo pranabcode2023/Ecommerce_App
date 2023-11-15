@@ -36,93 +36,100 @@ const CategoryProduct = () => {
     }
   };
   return (
-    <Layout>
-      <div className="container mt-3 category">
-        <h4 className="text-center text-cat-h4"> Category- {category?.name}</h4>
-        <h6 className="text-center"> {products?.length} result found</h6>
-        <div className="row">
-          <div className="col-md-9 offset-1">
-            {/* stringify method used for test purpose */}
-            {/* {JSON.stringify(radio, null, 4)} */}
+    <Layout title={"Product Category"}>
+      <div className="categoryProduct">
+        <div className="container mt-3 category">
+          <h4 className="text-center text-cat-h4">
+            Category- {category?.name}
+          </h4>
+          <h6 className="text-center resultFound">
+            {" "}
+            {products?.length} result found
+          </h6>
+          <div className="row">
+            <div className="col-md-9 offset-1">
+              {/* stringify method used for test purpose */}
+              {/* {JSON.stringify(radio, null, 4)} */}
 
-            <div className="d-flex flex-wrap">
-              {products?.map((p) => (
-                <div className="card m-2" key={p._id}>
-                  <img
-                    // src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
-                    src={`${serverURL}/api/v1/product/product-photo/${p._id}`}
-                    className="card-img-top"
-                    alt={p.name}
-                  />
-                  <div className="card-body">
-                    {/* <h5 className="card-title">{p.name}</h5> */}
-                    <div className="card-name-price">
-                      <h5 className="card-title">{p.name}</h5>
-                      <h5 className="card-title card-price">
-                        {p.price.toLocaleString("de-EU", {
-                          style: "currency",
-                          currency: "EUR",
-                        })}
-                      </h5>
-                    </div>
-                    <p className="card-text">
-                      {/* substring function used to show maximum 50 character  */}
-                      {p.description.substring(0, 50)}...{" "}
-                    </p>
-                    {/* <p className="card-text">€ {p.price} </p> */}
-                    <div className="card-name-price">
-                      <button
-                        className="btn btn-primary ms-1"
-                        onClick={() => navigate(`/product/${p.slug}`)}
-                      >
-                        More Details
-                      </button>
-                      <button
-                        className="btn btn-secondary ms-1"
-                        onClick={() => {
-                          setCart([...cart, p]);
-                          localStorage.setItem(
-                            "cart",
-                            JSON.stringify([...cart, p])
-                          );
-                          toast.success("Iteam added to Cart");
-                        }}
-                      >
-                        ADD TO CART
-                      </button>
+              <div className="d-flex flex-wrap">
+                {products?.map((p) => (
+                  <div className="card m-2" key={p._id}>
+                    <img
+                      // src={`${process.env.REACT_APP_API}/api/v1/product/product-photo/${p._id}`}
+                      src={`${serverURL}/api/v1/product/product-photo/${p._id}`}
+                      className="card-img-top"
+                      alt={p.name}
+                    />
+                    <div className="card-body">
+                      {/* <h5 className="card-title">{p.name}</h5> */}
+                      <div className="card-name-price">
+                        <h5 className="card-title">{p.name}</h5>
+                        <h5 className="card-title card-price">
+                          {p.price.toLocaleString("de-EU", {
+                            style: "currency",
+                            currency: "EUR",
+                          })}
+                        </h5>
+                      </div>
+                      <p className="card-text">
+                        {/* substring function used to show maximum 50 character  */}
+                        {p.description.substring(0, 50)}...{" "}
+                      </p>
+                      {/* <p className="card-text">€ {p.price} </p> */}
+                      <div className="card-name-price">
+                        <button
+                          className="btn btn-primary ms-1"
+                          onClick={() => navigate(`/product/${p.slug}`)}
+                        >
+                          More Details
+                        </button>
+                        <button
+                          className="btn btn-secondary ms-1"
+                          onClick={() => {
+                            setCart([...cart, p]);
+                            localStorage.setItem(
+                              "cart",
+                              JSON.stringify([...cart, p])
+                            );
+                            toast.success("Iteam added to Cart");
+                          }}
+                        >
+                          ADD TO CART
+                        </button>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-            <div className="m-2 p-3">
-              {products && products.length < total && (
-                // <button
-                //   className="btn loadmore"
-                //   onClick={(e) => {
-                //     e.preventDefault();
-                //     setPage(page + 1);
-                //   }}
-                // >
-                //   {loading ? "loading ..." : "Loadmore"}
-                // </button>
-                <button
-                  className="btn loadmore"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setPage(page + 1);
-                  }}
-                >
-                  {loading ? (
-                    "Loading ..."
-                  ) : (
-                    <>
-                      {" "}
-                      Loadmore <AiOutlineReload />
-                    </>
-                  )}
-                </button>
-              )}
+                ))}
+              </div>
+              <div className="m-2 p-3">
+                {products && products.length < total && (
+                  // <button
+                  //   className="btn loadmore"
+                  //   onClick={(e) => {
+                  //     e.preventDefault();
+                  //     setPage(page + 1);
+                  //   }}
+                  // >
+                  //   {loading ? "loading ..." : "Loadmore"}
+                  // </button>
+                  <button
+                    className="btn loadmore"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setPage(page + 1);
+                    }}
+                  >
+                    {loading ? (
+                      "Loading ..."
+                    ) : (
+                      <>
+                        {" "}
+                        Loadmore <AiOutlineReload />
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
             </div>
           </div>
         </div>

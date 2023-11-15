@@ -1,88 +1,111 @@
 .banner-img {
-    /* margin-top: 60px; */
+  margin-top: 6px;
 }
-
+.heading {
+  color: white;
+  background-color: beige;
+  background-image: linear-gradient(
+    0deg,
+    rgb(180, 180, 139) 0%,
+    rgb(55, 68, 85) 100%
+  );
+  margin-bottom: 0px;
+}
 .home-page h1 {
-    color: gray;
-    font-family: "Playfair Display", serif;
+  color: gray;
+  font-family: "Playfair Display", serif;
 }
 
 .home-page {
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #ffdee9;
-    background-image: linear-gradient(0deg, #ffdee9 0%, #b5fffc 100%);
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0px;
+  background-color: beige;
+  background-image: linear-gradient(
+    0deg,
+    rgb(180, 180, 139) 0%,
+    rgb(55, 68, 85) 100%
+  );
 }
 
 .home-page .card {
-    background-color: rgba(128, 128, 128, 0.097);
-    width: 18rem;
+  background-color: rgba(128, 128, 128, 0.097);
+  width: 18rem;
 }
 
 .home-page .card-name-price {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .home-page .card-price {
-    color: black;
-    font-weight: bold;
+  color: black;
+  font-weight: bold;
 }
 
 .home-page button {
-    border-radius: 0;
-    width: 100%;
-    border-top-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    font-size: 14px;
-    font-weight: bold;
+  border-radius: 0;
+  width: 100%;
+  border-top-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 .home-page .card-text {
-    color: rgb(90, 89, 89);
+  color: rgb(90, 89, 89);
 }
 
 .home-page .card img:hover {
-    transform: scale(0.9);
+  transform: scale(0.9);
 }
 
 .home-page .card-img-top {
-    height: 250px !important;
+  height: 250px !important;
 }
 
 /* ==================
 filters
 ============== */
-.filters h4 {
-    margin-top: 100px;
-    color: gray !important;
-    border-bottom: 1px solid rgba(128, 128, 128, 0.337);
+
+.categoryFilter {
+  margin-left: 20px;
 }
 
-/* .ant-checkbox-wrapper:first-of-type {
-    margin-left: 8px;
-} */
+.priceFilter {
+  margin-left: 20px;
+}
+.filters h4 {
+  margin-top: 20px;
+  /* color: gray !important; */
+  color: white;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.337);
+}
+
+.ant-checkbox-wrapper:first-of-type {
+    margin-left: 0px;
+}
 
 .ant-checkbox-wrapper {
-    margin: 2px;
+  margin: 2px;
 }
 
 .ant-radio-wrapper {
-    margin-bottom: 5px !important;
-    margin-left: 10px;
+  margin-bottom: 5px !important;
+  margin-left: 10px;
 }
 
 .filters button {
-    background-color: black;
-    width: 100%;
-    border: none;
-    border-radius: 0;
-    margin-top: 20px;
+  background-color: black;
+  width: 100%;
+  border: none;
+  border-radius: 0;
+  margin-top: 20px;
 }
 
 .loadmore {
-    color: brown;
-    font-weight: bold;
-    font-size: 20px !important;
+  color: brown;
+  font-weight: bold;
+  font-size: 20px !important;
 }

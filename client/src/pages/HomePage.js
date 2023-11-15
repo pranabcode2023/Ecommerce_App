@@ -148,6 +148,7 @@ const HomePage = () => {
         alt="bannerimage"
         width={"100%"}
       />
+      <h1 className="text-center heading">All Products</h1>
       {/* banner image */}
 
       <div className="container-fluid row  home-page">
@@ -155,7 +156,7 @@ const HomePage = () => {
           {/* Filter by Category  */}
 
           <h4 className="text-center">Filter By Category</h4>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column  categoryFilter">
             {categories?.map((c) => (
               <Checkbox
                 key={c._id}
@@ -168,7 +169,7 @@ const HomePage = () => {
 
           {/* Filter by Price  */}
           <h4 className="text-center mt-4">Filter By Price</h4>
-          <div className="d-flex flex-column">
+          <div className="d-flex flex-column  priceFilter">
             <Radio.Group onChange={(e) => setRadio(e.target.value)}>
               {Prices?.map((P) => (
                 <div key={P._id}>
@@ -191,7 +192,7 @@ const HomePage = () => {
         <div className="col-md-9">
           {/* stringify method used for test purpose */}
           {/* {JSON.stringify(radio, null, 4)} */}
-          <h1 className="text-center">All Products</h1>
+
           <div className="d-flex flex-wrap">
             {products?.map((p) => (
               <div className="card m-2" key={p._id}>

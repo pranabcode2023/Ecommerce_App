@@ -2,6 +2,7 @@
   margin-top: 6px;
 }
 .heading {
+  color: white;
   background-color: beige;
   background-image: linear-gradient(
     0deg,
@@ -77,13 +78,14 @@ filters
 }
 .filters h4 {
   margin-top: 20px;
-  color: gray !important;
+  /* color: gray !important; */
+  color: white;
   border-bottom: 1px solid rgba(128, 128, 128, 0.337);
 }
 
-/* .ant-checkbox-wrapper:first-of-type {
-    margin-left: 8px;
-} */
+.ant-checkbox-wrapper:first-of-type {
+    margin-left: 0px;
+}
 
 .ant-checkbox-wrapper {
   margin: 2px;
